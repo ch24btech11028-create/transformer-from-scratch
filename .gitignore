@@ -1,0 +1,21 @@
+# python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+.claude/
+
+# data (downloaded / generated; see notebooks 01 and 08)
+# tinyshakespeare.txt is small and kept so notebooks/scripts run out of the box
+data/*.txt
+!data/tinyshakespeare.txt
+data/**/*.bin
+data/**/*.pkl
+data/tinystories/
+
+# large checkpoints — keep the small Shakespeare one, ignore big ones
+checkpoints/tinystories.pt
+checkpoints/*.pt.tmp

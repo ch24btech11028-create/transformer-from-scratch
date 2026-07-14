@@ -1,0 +1,8 @@
+torch>=2.1
+numpy
+matplotlib
+regex
+tiktoken
+# notebooks / execution
+jupyter
+nbformat
