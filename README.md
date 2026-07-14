@@ -140,36 +140,7 @@ sequence length (the O(N²)→O(N) signature): on a 19M-param model at 1024 cont
 
 **TinyStories (~25M params, our BPE)** — coherent short stories; see notebook 08 for samples and
 the training curve.
-
----
-
-## Interview cheat-sheet
-
-Answers derived in the notebooks — this is the "why" you can defend:
-
-- **Why divide attention scores by √dₖ?** Dot products of dₖ-dim vectors have std ~√dₖ; unscaled,
-  softmax saturates to argmax and gradients vanish. *(nb 02)*
-- **Why the causal mask?** So a token can't attend to the future; without it the model "cheats"
-  at train time and collapses at generation. *(nb 02)*
-- **What do multiple heads buy you?** Parallel, specialized attention patterns at the same
-  parameter cost as one wide head. *(nb 02)*
-- **Pre-norm vs post-norm?** Pre-norm keeps LayerNorm off the residual highway → stable gradients
-  at depth, tolerant of high LR. *(nb 03)*
-- **Why does a transformer need positional embeddings?** Self-attention is permutation-equivariant
-  — order-blind without them. *(nb 03)*
-- **What is weight tying?** Reuse the token-embedding matrix as the output head: fewer params +
-  regularization. *(nb 03)*
-- **Why warmup + cosine LR?** Warmup protects the early steps while Adam's moments settle; cosine
-  decay settles into a minimum. *(nb 04)*
-- **Which params skip weight decay, and why?** 1-D params (LayerNorm gains, biases) — decaying
-  scale/shift knobs toward zero fights the model. *(nb 04)*
-- **Top-k vs top-p?** k fixes the *number* of candidates; p fixes the cumulative *probability*, so
-  the candidate set adapts to the model's confidence. *(nb 05)*
-- **What is a KV cache and why not cache queries?** Cache past keys/values (fixed once computed);
-  past queries produced already-emitted tokens and are never reused. O(N²)→O(N). *(nb 07)*
-- **RoPE vs learned positions?** RoPE encodes *relative* position and extrapolates beyond the
-  training context. *(nb 07)*
-
+x
 ---
 
 ## Credits
